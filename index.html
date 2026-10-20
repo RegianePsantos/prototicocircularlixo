@@ -3,331 +3,303 @@ html = r'''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Grajaú Circular: protótipo de coleta seletiva em Grajaú, Maranhão.">
-  <title>Grajaú Circular | Coleta Seletiva</title>
+  <meta name="theme-color" content="#116b45">
+  <meta name="description" content="Protótipo Grajaú Circular: pontos de coleta seletiva e apoio à reciclagem em Grajaú, Maranhão.">
+  <title>Grajaú Circular | Grajaú - MA</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#inicio"><span class="logo">♻</span><span>Grajaú<br><b>Circular</b></span></a>
-  <nav>
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#pontos">Pontos de coleta</a>
-    <a href="#cadastro" class="btn small">Criar cadastro</a>
+<header class="header">
+  <a class="brand" href="#inicio" aria-label="Grajaú Circular, início">
+    <span class="brand-icon">♻</span><span>GRAJAÚ <b>CIRCULAR</b><small>Grajaú · Maranhão</small></span>
+  </a>
+  <button class="menu-button" id="menuButton" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <nav id="nav">
+    <a href="#cidade">Nossa cidade</a><a href="#mapa">Mapa de coleta</a><a href="#como-funciona">Como funciona</a>
+    <a class="nav-cta" href="#cadastro">Participar</a>
   </nav>
 </header>
 
 <main>
   <section class="hero" id="inicio">
-    <div class="hero-content">
-      <span class="eyebrow">🌱 Feito para Grajaú – Maranhão</span>
-      <h1>Reciclar hoje.<br><span>Cuidar do amanhã.</span></h1>
-      <p>Encontre pontos de coleta seletiva, confira quais materiais são aceitos e simule um agendamento de coleta. Uma ideia simples para apoiar os catadores e cuidar da nossa cidade.</p>
-      <div class="actions">
-        <a class="btn" href="#pontos">📍 Ver pontos de coleta</a>
-        <a class="btn secondary" href="#agendar">📅 Agendar coleta</a>
+    <div class="hero-copy">
+      <span class="eyebrow">🌱 Um projeto para Grajaú–MA</span>
+      <h1>Grajaú mais limpa.<br><span>Reciclagem mais fácil.</span></h1>
+      <p>Um protótipo de aplicativo para encontrar pontos de coleta seletiva, separar materiais recicláveis e aproximar moradores, comércios e catadores de Grajaú.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#mapa">📍 Explorar pontos</a>
+        <a class="button secondary" href="#cadastro">Fazer cadastro de teste</a>
       </div>
+      <div class="hero-facts"><span>♻️ Separar</span><span>📍 Localizar</span><span>🤝 Conectar</span></div>
     </div>
-    <div class="hero-photo">
-      <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1100&q=85" alt="Vegetação verde e natureza">
-      <div class="photo-note">🌿 Pequenas atitudes<br><small>fazem uma grande diferença</small></div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85" alt="Paisagem natural ilustrativa">
+      <div class="photo-label"><strong>Nosso lugar, nosso cuidado</strong><small>Pequenas ações podem transformar a cidade.</small></div>
     </div>
   </section>
 
-  <section id="como-funciona" class="section">
-    <div class="section-title"><h2>Como funciona?</h2><p>Três passos para facilitar o descarte correto.</p></div>
+  <section class="city-section section" id="cidade">
+    <div class="section-heading">
+      <span class="eyebrow">CONHEÇA O LUGAR QUE NOS INSPIRA</span>
+      <h2>Grajaú, Maranhão 💚</h2>
+      <p>Este carrossel foi preparado para destacar lugares da própria cidade. As imagens abaixo são espaços reservados: substitua pelos arquivos de fotos reais de Grajaú que você confirmar e tiver autorização para usar.</p>
+    </div>
+    <div class="carousel" aria-label="Carrossel de fotografias de Grajaú, Maranhão">
+      <div class="carousel-track" id="carouselTrack">
+        <article class="slide">
+          <img src="fotos-grajau/ponte-grajau.jpg" alt="Ponte de Grajaú, Maranhão" onerror="this.style.display='none';this.parentElement.classList.add('photo-missing')">
+          <div class="missing-message">📷 Adicione sua foto real da ponte de Grajaú<br><small>Arquivo: fotos-grajau/ponte-grajau.jpg</small></div>
+          <div class="slide-caption"><span>01 / GRAJAÚ–MA</span><h3>A ponte da nossa cidade</h3><p>Um dos lugares que fazem parte da paisagem local.</p></div>
+        </article>
+        <article class="slide">
+          <img src="fotos-grajau/olho-dagua.jpg" alt="Olho d'Água em Grajaú, Maranhão" onerror="this.style.display='none';this.parentElement.classList.add('photo-missing')">
+          <div class="missing-message">📷 Adicione sua foto real do Olho d'Água<br><small>Arquivo: fotos-grajau/olho-dagua.jpg</small></div>
+          <div class="slide-caption"><span>02 / GRAJAÚ–MA</span><h3>Olho d'Água</h3><p>Valorizar os espaços naturais também é cuidar do nosso futuro.</p></div>
+        </article>
+        <article class="slide">
+          <img src="fotos-grajau/igreja-grajau.jpg" alt="Igreja em Grajaú, Maranhão" onerror="this.style.display='none';this.parentElement.classList.add('photo-missing')">
+          <div class="missing-message">📷 Adicione sua foto real de uma igreja de Grajaú<br><small>Arquivo: fotos-grajau/igreja-grajau.jpg</small></div>
+          <div class="slide-caption"><span>03 / GRAJAÚ–MA</span><h3>História e comunidade</h3><p>Uma cidade mais limpa é uma conquista de todos.</p></div>
+        </article>
+        <article class="slide">
+          <img src="fotos-grajau/paisagem-grajau.jpg" alt="Paisagem de Grajaú, Maranhão" onerror="this.style.display='none';this.parentElement.classList.add('photo-missing')">
+          <div class="missing-message">📷 Adicione uma foto real da paisagem de Grajaú<br><small>Arquivo: fotos-grajau/paisagem-grajau.jpg</small></div>
+          <div class="slide-caption"><span>04 / GRAJAÚ–MA</span><h3>Nossa paisagem, nosso compromisso</h3><p>Descarte correto e reciclagem ajudam a proteger o ambiente.</p></div>
+        </article>
+      </div>
+      <button class="carousel-arrow prev" id="prevSlide" aria-label="Foto anterior">‹</button>
+      <button class="carousel-arrow next" id="nextSlide" aria-label="Próxima foto">›</button>
+    </div>
+    <div class="carousel-bottom"><div class="dots" id="dots"></div><span id="slideCounter">Foto 1 de 4</span></div>
+    <p class="photo-note">Importante: não usei fotos de outras cidades como se fossem de Grajaú. Para manter a apresentação correta, o projeto mostra espaços para inserir fotografias locais reais.</p>
+  </section>
+
+  <section class="section" id="como-funciona">
+    <div class="section-heading"><span class="eyebrow">SIMPLES E PRÁTICO</span><h2>Como o aplicativo funciona</h2><p>Uma ideia organizada em três passos fáceis.</p></div>
     <div class="feature-grid">
-      <article class="feature"><span>📍</span><h3>1. Encontre</h3><p>Consulte o mapa demonstrativo com pontos cadastrados em Grajaú.</p></article>
-      <article class="feature"><span>♻️</span><h3>2. Separe</h3><p>Confira os materiais aceitos em cada local antes de levar seus recicláveis.</p></article>
-      <article class="feature"><span>📅</span><h3>3. Combine</h3><p>Preencha o formulário de demonstração para registrar interesse em uma coleta.</p></article>
+      <article class="feature-card"><span class="feature-icon">📍</span><h3>1. Encontre um ponto</h3><p>Consulte o mapa demonstrativo e veja locais cadastrados para coleta seletiva em Grajaú.</p></article>
+      <article class="feature-card"><span class="feature-icon">♻️</span><h3>2. Separe os materiais</h3><p>Veja se o local aceita papel, plástico, vidro, garrafas PET ou latinhas.</p></article>
+      <article class="feature-card"><span class="feature-icon">🤝</span><h3>3. Ajude a conectar</h3><p>Registre interesse em uma coleta e, futuramente, conecte moradores, comércios e catadores.</p></article>
     </div>
   </section>
 
-  <section class="section gallery-section" id="grajau">
-    <div class="section-title"><h2>Grajaú, nossa cidade</h2><p>Um espaço para valorizar a natureza e os lugares de Grajaú–MA.</p></div>
-    <div class="carousel">
-      <div class="slides" id="slides">
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=85" alt="Paisagem de água e natureza">
-          <div class="slide-caption"><h3>Água e natureza</h3><p>Preservar o meio ambiente começa com pequenas atitudes.</p></div>
-        </article>
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1400&q=85" alt="Vegetação verde">
-          <div class="slide-caption"><h3>Verde que queremos preservar</h3><p>Mais reciclagem e menos descarte incorreto.</p></div>
-        </article>
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=85" alt="Paisagem ao entardecer">
-          <div class="slide-caption"><h3>Comunidade que participa</h3><p>Moradores, comércios e catadores podem fazer parte da mudança.</p></div>
-        </article>
-      </div>
-      <button class="carousel-arrow prev" id="prev" aria-label="Imagem anterior">‹</button>
-      <button class="carousel-arrow next" id="next" aria-label="Próxima imagem">›</button>
-    </div>
-    <div class="dots" id="dots"></div>
-    <p class="note">As fotos são ilustrativas, não fotografias confirmadas de pontos turísticos de Grajaú. Você poderá substituí-las por fotos autorizadas da ponte, igrejas e outros locais da cidade.</p>
-  </section>
-
-  <section class="section" id="pontos">
-    <div class="section-title"><h2>Pontos de coleta seletiva</h2><p>Veja o mapa demonstrativo e filtre por tipo de material.</p></div>
-    <div class="content-grid">
-      <div class="box">
-        <label for="materialFilter">Filtrar por material</label>
+  <section class="map-section section" id="mapa">
+    <div class="section-heading"><span class="eyebrow">MAPA LOCAL</span><h2>Pontos de coleta em Grajaú</h2><p>Mapa centrado em Grajaú–MA, com marcadores ilustrativos para apresentar a ideia.</p></div>
+    <div class="map-layout">
+      <aside class="map-panel">
+        <label for="materialFilter">Qual material você quer descartar?</label>
         <select id="materialFilter">
-          <option value="todos">Todos os materiais</option>
-          <option value="Papel">Papel</option><option value="Plástico">Plástico</option>
-          <option value="Vidro">Vidro</option><option value="Metal">Metal</option>
-          <option value="PET">Garrafas PET</option><option value="Lâmpadas">Lâmpadas</option>
+          <option value="todos">Todos os materiais</option><option value="Papel">Papel</option><option value="Plástico">Plástico</option><option value="Vidro">Vidro</option><option value="Metal">Latinhas / metal</option><option value="PET">Garrafas PET</option>
         </select>
         <div id="pointList" class="point-list"></div>
-      </div>
-      <div class="box">
-        <div class="map-actions">
-          <button class="btn" id="locateBtn" type="button">◎ Usar minha localização</button>
-          <button class="btn secondary" id="resetMap" type="button">Voltar para Grajaú</button>
-        </div>
-        <div id="map" aria-label="Mapa demonstrativo de pontos de coleta"></div>
-        <p class="note">Os marcadores são exemplos, não pontos reais confirmados. O GPS precisa de permissão e funciona em HTTPS ou localhost.</p>
+        <p class="small-note">Os locais são exemplos fictícios. Não leve materiais a um ponto sem confirmar o endereço e o tipo de resíduo aceito.</p>
+      </aside>
+      <div class="map-panel map-panel-large">
+        <div class="map-buttons"><button class="button primary" id="gpsButton" type="button">◎ Usar meu GPS</button><button class="button secondary" id="grajauButton" type="button">Voltar para Grajaú</button></div>
+        <div id="map" aria-label="Mapa de Grajaú com pontos demonstrativos"></div>
+        <p class="small-note">O GPS só será acessado se você autorizar no navegador. A localização do aparelho não é enviada a um servidor.</p>
       </div>
     </div>
   </section>
 
-  <section class="section tinted" id="cadastro">
-    <div class="section-title"><h2>Participe do Grajaú Circular</h2><p>Faça uma simulação de cadastro e agendamento.</p></div>
-    <div class="content-grid">
-      <div class="box">
+  <section class="section signup-section" id="cadastro">
+    <div class="section-heading"><span class="eyebrow">PARTICIPE DO PROTÓTIPO</span><h2>Vamos cuidar de Grajaú juntos?</h2><p>Teste o cadastro e o agendamento. Esta versão é uma demonstração para apresentação.</p></div>
+    <div class="forms-grid">
+      <form class="form-card" id="registerForm">
         <h3>👤 Cadastro demonstrativo</h3>
-        <form id="registerForm">
-          <label for="name">Nome</label><input id="name" required maxlength="80" placeholder="Seu nome">
-          <label for="email">E-mail</label><input id="email" type="email" required maxlength="120" placeholder="voce@email.com">
-          <label for="neighborhood">Bairro em Grajaú</label><input id="neighborhood" required maxlength="80" placeholder="Ex.: Centro, Trizidela">
-          <label for="role">Como deseja participar?</label>
-          <select id="role"><option>Morador(a)</option><option>Comércio parceiro</option><option>Catador(a) / associação</option></select>
-          <button class="btn full" type="submit">Criar cadastro de teste</button>
-          <p class="note">É apenas uma simulação. Não use dados pessoais reais: nada é enviado para um servidor.</p>
-          <div class="status" id="registerStatus" role="status"></div>
-        </form>
-      </div>
-      <div class="box" id="agendar">
-        <h3>📅 Simular agendamento</h3>
-        <form id="pickupForm">
-          <label for="pickupName">Nome</label><input id="pickupName" required maxlength="80" placeholder="Seu nome">
-          <label for="pickupDate">Data desejada</label><input id="pickupDate" type="date" required>
-          <label for="pickupMaterial">Material disponível</label>
-          <select id="pickupMaterial"><option>Papel</option><option>Plástico / PET</option><option>Vidro</option><option>Metal / latinhas</option><option>Outro reciclável</option></select>
-          <label for="pickupNeighborhood">Bairro ou referência em Grajaú</label><input id="pickupNeighborhood" required maxlength="120" placeholder="Informe o bairro">
-          <label for="pickupNotes">Observação (opcional)</label><textarea id="pickupNotes" rows="3" maxlength="300" placeholder="Ex.: sacolas de garrafas PET"></textarea>
-          <button class="btn full" type="submit">Registrar simulação</button>
-          <p class="note">O formulário não confirma nem envia uma coleta real.</p>
-          <div class="status" id="pickupStatus" role="status"></div>
-        </form>
-      </div>
+        <label for="fullName">Nome</label><input id="fullName" name="fullName" required maxlength="80" placeholder="Seu nome">
+        <label for="email">E-mail de teste</label><input id="email" name="email" type="email" required maxlength="100" placeholder="teste@exemplo.com">
+        <label for="neighborhood">Bairro em Grajaú</label><input id="neighborhood" name="neighborhood" required maxlength="80" placeholder="Ex.: Centro">
+        <label for="profile">Quero participar como</label><select id="profile"><option>Morador(a)</option><option>Comércio parceiro</option><option>Catador(a) / associação</option></select>
+        <button class="button primary full" type="submit">Simular cadastro</button>
+        <div class="form-status" id="registerStatus" role="status"></div>
+        <p class="small-note">Não informe dados reais. Nada é armazenado em banco de dados ou enviado pela internet.</p>
+      </form>
+      <form class="form-card" id="pickupForm">
+        <h3>📅 Simular pedido de coleta</h3>
+        <label for="pickupName">Nome</label><input id="pickupName" required maxlength="80" placeholder="Seu nome">
+        <label for="pickupDate">Data desejada</label><input id="pickupDate" type="date" required>
+        <label for="pickupMaterial">Material</label><select id="pickupMaterial"><option>Papel</option><option>Plástico / PET</option><option>Vidro</option><option>Latinhas / metal</option><option>Outro reciclável</option></select>
+        <label for="pickupAddress">Bairro ou referência em Grajaú</label><input id="pickupAddress" required maxlength="120" placeholder="Bairro ou referência">
+        <button class="button primary full" type="submit">Simular agendamento</button>
+        <div class="form-status" id="pickupStatus" role="status"></div>
+        <p class="small-note">É apenas uma simulação. Não há coleta real confirmada.</p>
+      </form>
     </div>
   </section>
 </main>
 
-<footer><div><a class="brand footer-brand" href="#inicio"><span class="logo">♻</span><b>Grajaú Circular</b></a><p>Juntos por uma cidade mais limpa e sustentável.</p><small>Protótipo acadêmico. Pontos, materiais e parceiros precisam ser confirmados por pesquisa de campo.</small></div></footer>
-
+<footer><div class="footer-brand"><span class="brand-icon">♻</span><div><strong>GRAJAÚ CIRCULAR</strong><small>Protótipo de aplicativo · Grajaú, Maranhão</small></div></div><p>Reciclar hoje. Cuidar do amanhã.</p><small>Projeto demonstrativo. Pontos de coleta e parcerias precisam ser validados por pesquisa de campo.</small></footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="script.js"></script>
 </body>
-</html>
-'''
+</html>'''
 
 css = r'''*{box-sizing:border-box}
-:root{--green:#087b43;--dark:#064d37;--lime:#c7f36b;--pale:#eef9ef;--text:#18362d;--muted:#60766d;--shadow:0 12px 32px #093d2415}
-html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#f8fcf8}a{text-decoration:none;color:inherit}
-.topbar{position:sticky;top:0;z-index:1000;background:#ffffffed;backdrop-filter:blur(10px);border-bottom:1px solid #e5eee7;display:flex;justify-content:space-between;align-items:center;padding:12px max(4%,calc((100% - 1140px)/2));gap:20px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--dark);line-height:1.05}.logo{width:43px;height:43px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#a8e85d,#087b43);color:white;font-size:25px}.topbar nav{display:flex;align-items:center;gap:20px;font-size:.92rem;font-weight:700}.topbar nav a:hover{color:var(--green)}
-.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--green);color:white;font-size:.92rem}.btn:hover{background:var(--dark)}.btn.secondary{background:white;border:1px solid #cfe4d3;color:var(--dark)}.btn.small{padding:10px 14px}
-.hero{padding:65px max(4%,calc((100% - 1140px)/2));display:grid;grid-template-columns:1.08fr .92fr;gap:38px;align-items:center;background:radial-gradient(circle at 85% 10%,#d9f4c3,transparent 35%),linear-gradient(120deg,#f0faed,#fff 65%)}.eyebrow{display:inline-block;background:#e0f5d4;color:var(--dark);font-weight:800;padding:8px 13px;border-radius:999px;font-size:.84rem}.hero h1{font-size:clamp(2.7rem,5vw,4.6rem);line-height:.99;letter-spacing:-.04em;margin:20px 0;color:var(--dark)}.hero h1 span{color:var(--green)}.hero p{font-size:1.08rem;line-height:1.7;color:#4d675b;max-width:570px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.hero-photo{position:relative}.hero-photo img{width:100%;height:350px;object-fit:cover;border-radius:28px;box-shadow:var(--shadow)}.photo-note{position:absolute;left:-15px;bottom:20px;background:white;padding:14px 18px;border-radius:18px;box-shadow:var(--shadow);font-weight:800}.photo-note small{font-weight:500;color:var(--muted)}
-.section{padding:58px max(4%,calc((100% - 1140px)/2))}.section-title{text-align:center;max-width:680px;margin:0 auto 30px}.section-title h2{font-size:clamp(1.8rem,3vw,2.6rem);color:var(--dark);margin:0 0 10px}.section-title p{line-height:1.6;color:var(--muted);margin:0}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature,.box{background:white;border:1px solid #e4eee5;border-radius:22px;padding:23px;box-shadow:var(--shadow)}.feature>span{width:48px;height:48px;border-radius:16px;background:var(--pale);display:grid;place-items:center;font-size:25px}.feature h3,.box h3{color:var(--dark);margin:15px 0 8px}.feature p{color:var(--muted);line-height:1.6;margin:0}.gallery-section,.tinted{background:#f0f8ef}
-.carousel{position:relative;overflow:hidden;border-radius:24px;box-shadow:var(--shadow);background:white}.slides{display:flex;transition:transform .45s ease}.slide{min-width:100%;position:relative;height:390px}.slide img{width:100%;height:100%;object-fit:cover;display:block}.slide-caption{position:absolute;left:0;right:0;bottom:0;padding:55px 28px 24px;color:white;background:linear-gradient(transparent,#052f23e8)}.slide-caption h3{font-size:1.7rem;margin:0 0 5px}.slide-caption p{margin:0}.carousel-arrow{position:absolute;top:48%;transform:translateY(-50%);border:0;width:42px;height:42px;border-radius:50%;background:white;color:var(--dark);font-size:25px;cursor:pointer;box-shadow:var(--shadow)}.prev{left:14px}.next{right:14px}.dots{display:flex;justify-content:center;gap:8px;margin-top:15px}.dot{width:9px;height:9px;border:0;border-radius:20px;background:#c8d8cc;cursor:pointer}.dot.active{width:25px;background:var(--green)}
-.content-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:start}.box h3{margin-top:0}.map-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:13px}#map{height:365px;width:100%;border-radius:18px;border:1px solid #dce9de;z-index:1}.point-list{display:grid;gap:10px;margin-top:14px}.point{display:flex;gap:12px;padding:13px;border:1px solid #e6eee7;border-radius:14px}.point-icon{font-size:22px}.point b{display:block;color:var(--dark);margin-bottom:4px}.point small{color:var(--muted);line-height:1.5}.tag{display:inline-block;background:#e7f5e7;color:#24643b;border-radius:999px;padding:4px 8px;font-size:.75rem;font-weight:800;margin-top:7px}
-label{display:block;font-size:.9rem;font-weight:800;margin:13px 0 7px}input,select,textarea{width:100%;padding:12px 13px;border:1px solid #d5e4d8;border-radius:12px;font:inherit;background:#fbfefb;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #087b4315}.full{width:100%;margin-top:16px}.note{font-size:.82rem;line-height:1.5;color:var(--muted);margin-top:13px}.status{display:none;padding:12px 14px;background:#eff9e9;border-radius:12px;color:#245b36;font-size:.9rem;margin-top:12px;line-height:1.5}.status.show{display:block}
-footer{background:#063f2e;color:white;padding:34px 5%;text-align:center}footer p{color:#c5dfcf}.footer-brand{justify-content:center;color:white}footer small{display:block;color:#d4e8da;line-height:1.6;max-width:700px;margin:12px auto 0}
-@media(max-width:800px){.topbar{align-items:flex-start}.topbar nav{gap:10px;flex-wrap:wrap;justify-content:flex-end;font-size:.82rem}.hero,.content-grid{grid-template-columns:1fr}.hero{padding-top:40px}.hero-photo img{height:260px}.feature-grid{grid-template-columns:1fr}.slide{height:300px}.section{padding-top:42px;padding-bottom:42px}}
-@media(max-width:520px){.topbar nav a:first-child{display:none}.hero h1{font-size:2.7rem}.slide-caption h3{font-size:1.3rem}.box,.feature{padding:17px}.hero-photo .photo-note{left:8px}.actions .btn{width:100%}}
+:root{--green:#116b45;--green2:#1b8a55;--dark:#083d2b;--lime:#d7f27c;--pale:#eef8ef;--text:#1d382d;--muted:#607469;--line:#dfeae1;--shadow:0 16px 42px #063d2412}
+html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:#fbfdfb}a{color:inherit;text-decoration:none}
+.header{height:auto;min-height:76px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px max(4%,calc((100% - 1160px)/2));background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--dark);font-size:.96rem;letter-spacing:.04em;font-weight:800;line-height:1.1}.brand b{color:var(--green2)}.brand small{display:block;font-size:.72rem;letter-spacing:0;color:var(--muted);font-weight:600;margin-top:5px}.brand-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(140deg,var(--lime),var(--green));color:white;font-size:25px}
+nav{display:flex;align-items:center;gap:22px;font-size:.9rem;font-weight:700}nav a:hover{color:var(--green2)}.nav-cta{padding:11px 16px;background:var(--green);color:white;border-radius:999px}.nav-cta:hover{color:white!important;background:var(--dark)}.menu-button{display:none;border:0;background:var(--pale);border-radius:10px;padding:9px 12px;font-size:20px}
+.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:45px;align-items:center;padding:72px max(4%,calc((100% - 1160px)/2)) 66px;background:radial-gradient(circle at 80% 10%,#e0f4d1,transparent 35%),linear-gradient(120deg,#f2faef,#fff 68%)}.eyebrow{display:inline-block;border-radius:999px;padding:8px 12px;background:#e6f5df;color:var(--green);font-size:.76rem;font-weight:900;letter-spacing:.07em}.hero h1{font-size:clamp(2.7rem,5.4vw,4.7rem);line-height:.98;letter-spacing:-.055em;color:var(--dark);margin:20px 0}.hero h1 span{color:var(--green2)}.hero-copy>p{max-width:570px;font-size:1.06rem;line-height:1.8;color:#536a5d}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}.button{border:0;border-radius:999px;padding:13px 17px;font-size:.88rem;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,background .2s}.button:hover{transform:translateY(-2px)}.primary{background:var(--green);color:#fff}.primary:hover{background:var(--dark)}.secondary{background:#fff;color:var(--dark);border:1px solid #cddfd1}.hero-facts{display:flex;gap:17px;flex-wrap:wrap;color:var(--muted);font-size:.85rem;font-weight:700}.hero-image{position:relative}.hero-image>img{width:100%;height:390px;object-fit:cover;border-radius:28px;box-shadow:var(--shadow)}.photo-label{position:absolute;bottom:18px;left:18px;right:18px;padding:17px 19px;border-radius:17px;background:#ffffffed;box-shadow:var(--shadow)}.photo-label strong,.photo-label small{display:block}.photo-label small{margin-top:5px;color:var(--muted)}
+.section{padding:72px max(4%,calc((100% - 1160px)/2))}.section-heading{text-align:center;max-width:760px;margin:0 auto 32px}.section-heading h2{font-size:clamp(1.9rem,3.5vw,2.8rem);color:var(--dark);letter-spacing:-.035em;margin:13px 0}.section-heading p{color:var(--muted);line-height:1.75;margin:0}.city-section{background:#f2f8f0}.carousel{position:relative;overflow:hidden;border-radius:25px;background:#e2eee3;box-shadow:var(--shadow)}.carousel-track{display:flex;transition:transform .55s cubic-bezier(.2,.7,.2,1)}.slide{position:relative;min-width:100%;height:440px;overflow:hidden;background:#dbe9dd}.slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.slide:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,#062d22e8);pointer-events:none}.slide-caption{position:absolute;z-index:2;bottom:25px;left:30px;right:30px;color:white}.slide-caption span{font-size:.75rem;font-weight:900;letter-spacing:.13em;color:#d9f59b}.slide-caption h3{font-size:clamp(1.5rem,3vw,2.3rem);margin:8px 0}.slide-caption p{margin:0;line-height:1.6}.missing-message{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px;color:#2c6246;font-weight:800;background:linear-gradient(135deg,#e9f7e5,#cde5d0)}.missing-message small{font-size:.8rem;font-weight:600;margin-top:8px}.slide.photo-missing .missing-message{display:flex}.slide.photo-missing:after{display:none}.slide.photo-missing .slide-caption{background:#083d2b;padding:18px;border-radius:16px;left:18px;right:18px;bottom:18px}.carousel-arrow{position:absolute;z-index:3;top:45%;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:var(--dark);font-size:28px;box-shadow:var(--shadow);cursor:pointer}.carousel-arrow.prev{left:16px}.carousel-arrow.next{right:16px}.carousel-bottom{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:16px;color:var(--muted);font-size:.82rem}.dots{display:flex;gap:7px}.dot{width:9px;height:9px;border:0;border-radius:999px;background:#c5d8c9;cursor:pointer}.dot.active{width:26px;background:var(--green)}.photo-note,.small-note{font-size:.81rem;line-height:1.65;color:var(--muted)}.photo-note{text-align:center;margin:17px auto 0;max-width:760px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature-card{background:white;border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:var(--shadow)}.feature-icon{display:grid;place-items:center;width:52px;height:52px;background:var(--pale);border-radius:17px;font-size:26px}.feature-card h3{color:var(--dark);margin:17px 0 9px}.feature-card p{color:var(--muted);line-height:1.7;margin:0}
+.map-section{background:#f3f8f3}.map-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:20px;align-items:start}.map-panel,.form-card{background:white;border:1px solid var(--line);border-radius:22px;padding:23px;box-shadow:var(--shadow)}label{display:block;font-weight:800;font-size:.88rem;margin:13px 0 7px}select,input,textarea{width:100%;padding:12px 13px;border:1px solid #d3e2d6;border-radius:12px;background:#fcfefc;color:var(--text);font:inherit;outline:none}select:focus,input:focus,textarea:focus{border-color:var(--green2);box-shadow:0 0 0 3px #16844b17}.point-list{display:grid;gap:10px;margin-top:15px}.point{display:flex;gap:12px;padding:13px;border:1px solid #e5eee6;border-radius:14px;cursor:pointer}.point:hover{background:#f5fbf4}.point-icon{font-size:22px}.point strong{display:block;color:var(--dark);font-size:.9rem;margin-bottom:5px}.point small{display:block;color:var(--muted);line-height:1.5}.tag{display:inline-block;background:#e6f5e2;color:#276443;border-radius:999px;padding:5px 8px;font-size:.69rem;font-weight:900;margin-top:7px}.map-panel-large{padding:17px}.map-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}#map{height:400px;width:100%;border-radius:16px;border:1px solid var(--line);z-index:1}.signup-section{background:linear-gradient(180deg,#fff,#f5faf3)}.forms-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.form-card h3{color:var(--dark);margin:0 0 18px}.full{width:100%;margin-top:17px}.form-status{display:none;margin-top:13px;padding:13px;border-radius:12px;background:#e8f7e4;color:#225b37;line-height:1.5;font-size:.9rem}.form-status.show{display:block}.small-note{margin:12px 0 0}
+footer{background:#073d2c;color:white;text-align:center;padding:35px 5%}.footer-brand{display:flex;justify-content:center;align-items:center;gap:10px}.footer-brand strong,.footer-brand small{display:block}.footer-brand small{margin-top:5px;color:#cde3d2;font-size:.78rem}footer>p{color:#d3e6d6}footer>small{display:block;max-width:700px;margin:10px auto 0;color:#bdd5c4;line-height:1.6}
+@media(max-width:850px){.header{flex-wrap:wrap}.menu-button{display:block;margin-left:auto}nav{display:none;width:100%;padding:8px 0 5px;flex-direction:column;align-items:stretch;gap:0}nav.open{display:flex}nav a{padding:12px}.hero{grid-template-columns:1fr;padding-top:48px}.hero-image>img{height:300px}.map-layout,.forms-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.section{padding-top:50px;padding-bottom:50px}.slide{height:370px}}
+@media(max-width:520px){.hero h1{font-size:2.8rem}.hero-actions .button{width:100%}.slide{height:340px}.slide-caption{left:20px;right:20px;bottom:20px}.slide-caption p{font-size:.9rem}.map-panel,.form-card{padding:16px}.hero-image>img{height:250px}.carousel-arrow{width:38px;height:38px}.map-buttons .button{flex:1;font-size:.78rem;padding:11px 10px}}
 '''
 
-js = r'''// Grajaú Circular: protótipo demonstrativo. Os pontos abaixo são exemplos fictícios.
-const grajau = [-5.8194, -46.1386];
+js = r'''// Grajaú Circular: protótipo acadêmico. Pontos do mapa são exemplos, não endereços confirmados.
+const centroGrajau = [-5.8194, -46.1386];
 const pontos = [
-  {id:1,nome:"Ponto demonstrativo — Centro",bairro:"Centro",lat:-5.8148,lng:-46.1450,materiais:["Papel","Plástico","Vidro","Metal","PET"],obs:"Local ilustrativo; confirmar endereço antes de usar."},
-  {id:2,nome:"Ponto demonstrativo — Trizidela",bairro:"Trizidela",lat:-5.8270,lng:-46.1295,materiais:["Papel","Plástico","Metal","PET"],obs:"Local ilustrativo; confirmar endereço antes de usar."},
-  {id:3,nome:"Ponto demonstrativo — Região central",bairro:"Região central",lat:-5.8210,lng:-46.1350,materiais:["Papel","Vidro","Metal"],obs:"Local ilustrativo; confirmar endereço antes de usar."},
-  {id:4,nome:"Ponto especial a confirmar",bairro:"Endereço a confirmar",lat:-5.8070,lng:-46.1320,materiais:[],obs:"Não levar lâmpadas sem confirmar previamente o recebimento."}
+  {id:1,nome:"Ponto demonstrativo — Centro",bairro:"Centro (exemplo)",lat:-5.8148,lng:-46.1450,materiais:["Papel","Plástico","Vidro","Metal","PET"],observacao:"Local ilustrativo; confirmar endereço antes de usar."},
+  {id:2,nome:"Ponto demonstrativo — Trizidela",bairro:"Trizidela (exemplo)",lat:-5.8270,lng:-46.1295,materiais:["Papel","Plástico","Metal","PET"],observacao:"Local ilustrativo; confirmar endereço antes de usar."},
+  {id:3,nome:"Ponto demonstrativo — Região central",bairro:"Região central (exemplo)",lat:-5.8210,lng:-46.1350,materiais:["Papel","Vidro","Metal"],observacao:"Local ilustrativo; confirmar endereço antes de usar."}
 ];
+let mapa;
+let marcadores=[];
+let fotoAtual=0;
+let timerFotos;
 
-let mapa = null;
-let marcadores = [];
-let slideAtual = 0;
-let timerCarrossel = null;
+const track=document.getElementById("carouselTrack");
+const slides=[...document.querySelectorAll(".slide")];
+const dotsContainer=document.getElementById("dots");
+slides.forEach((_,i)=>{
+  const dot=document.createElement("button");
+  dot.className="dot"+(i===0?" active":"");
+  dot.type="button";
+  dot.setAttribute("aria-label",`Mostrar foto ${i+1}`);
+  dot.addEventListener("click",()=>{mostrarFoto(i);reiniciarTimer();});
+  dotsContainer.append(dot);
+});
+function mostrarFoto(n){
+  fotoAtual=(n+slides.length)%slides.length;
+  track.style.transform=`translateX(-${fotoAtual*100}%)`;
+  [...dotsContainer.children].forEach((dot,i)=>dot.classList.toggle("active",i===fotoAtual));
+  document.getElementById("slideCounter").textContent=`Foto ${fotoAtual+1} de ${slides.length}`;
+}
+function reiniciarTimer(){clearInterval(timerFotos);timerFotos=setInterval(()=>mostrarFoto(fotoAtual+1),6000);}
+document.getElementById("prevSlide").addEventListener("click",()=>{mostrarFoto(fotoAtual-1);reiniciarTimer();});
+document.getElementById("nextSlide").addEventListener("click",()=>{mostrarFoto(fotoAtual+1);reiniciarTimer();});
 
 function iniciarMapa(){
-  const elemento = document.getElementById("map");
-  if (!window.L) {
-    elemento.innerHTML = "<p style='padding:18px'>Não foi possível carregar o mapa. Verifique a conexão com a internet.</p>";
-    return;
-  }
-  mapa = L.map("map").setView(grajau, 13);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap"
-  }).addTo(mapa);
-
-  pontos.forEach(p => {
-    const marcador = L.marker([p.lat,p.lng]).addTo(mapa)
-      .bindPopup(`<strong>${p.nome}</strong><br>${p.bairro}<br><small>${p.obs}</small>`);
-    marcadores.push({ponto:p, marcador});
+  const elemento=document.getElementById("map");
+  if(!window.L){elemento.innerHTML="<p>Não foi possível carregar o mapa. Confira sua conexão com a internet.</p>";return;}
+  mapa=L.map("map").setView(centroGrajau,13);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap"}).addTo(mapa);
+  pontos.forEach(p=>{
+    const marcador=L.marker([p.lat,p.lng]).addTo(mapa).bindPopup(`<strong>${p.nome}</strong><br>${p.bairro}<br><small>${p.observacao}</small>`);
+    marcadores.push({ponto:p,marcador});
   });
-  mostrarPontos(pontos);
+  renderizarPontos(pontos);
 }
-
-function mostrarPontos(lista){
-  const area = document.getElementById("pointList");
-  area.replaceChildren();
-  if (!lista.length) {
-    area.textContent = "Nenhum ponto demonstrativo cadastrado para esse material.";
-    return;
-  }
-  lista.forEach(p => {
-    const item = document.createElement("div");
-    item.className = "point";
-    const icon = document.createElement("span");
-    icon.className = "point-icon";
-    icon.textContent = "📍";
-    const texto = document.createElement("div");
-    const nome = document.createElement("b");
-    nome.textContent = p.nome;
-    const detalhe = document.createElement("small");
-    detalhe.textContent = `${p.bairro}. ${p.materiais.length ? "Materiais previstos: " + p.materiais.join(", ") + ". " : ""}${p.obs}`;
-    const tag = document.createElement("span");
-    tag.className = "tag";
-    tag.textContent = "Exemplo de protótipo";
-    texto.append(nome, detalhe, document.createElement("br"), tag);
-    item.append(icon,texto);
-    item.addEventListener("click", () => {
-      if (mapa) {
-        mapa.setView([p.lat,p.lng], 16);
-        const encontrado = marcadores.find(m => m.ponto.id === p.id);
-        if (encontrado) encontrado.marcador.openPopup();
-      }
-    });
+function renderizarPontos(lista){
+  const area=document.getElementById("pointList");area.replaceChildren();
+  if(!lista.length){area.textContent="Nenhum ponto de demonstração para esse material.";return;}
+  lista.forEach(p=>{
+    const item=document.createElement("div");item.className="point";
+    const emoji=document.createElement("span");emoji.className="point-icon";emoji.textContent="📍";
+    const info=document.createElement("div");
+    const nome=document.createElement("strong");nome.textContent=p.nome;
+    const detalhe=document.createElement("small");detalhe.textContent=`${p.bairro}. Materiais ilustrativos: ${p.materiais.join(", ")}. ${p.observacao}`;
+    const tag=document.createElement("span");tag.className="tag";tag.textContent="PONTO DE TESTE";
+    info.append(nome,detalhe,tag);item.append(emoji,info);
+    item.addEventListener("click",()=>{mapa.setView([p.lat,p.lng],16);const found=marcadores.find(m=>m.ponto.id===p.id);if(found)found.marcador.openPopup();});
     area.append(item);
   });
 }
-
-function filtrarPontos(){
-  const material = document.getElementById("materialFilter").value;
-  const lista = material === "todos" ? pontos : pontos.filter(p => p.materiais.includes(material));
-  mostrarPontos(lista);
-  marcadores.forEach(({ponto,marcador}) => {
-    if (material === "todos" || ponto.materiais.includes(material)) {
-      if (!mapa.hasLayer(marcador)) marcador.addTo(mapa);
-    } else if (mapa.hasLayer(marcador)) mapa.removeLayer(marcador);
+document.getElementById("materialFilter").addEventListener("change",()=>{
+  const valor=document.getElementById("materialFilter").value;
+  const lista=valor==="todos"?pontos:pontos.filter(p=>p.materiais.includes(valor));
+  renderizarPontos(lista);
+  marcadores.forEach(({ponto,marcador})=>{
+    const deveMostrar=valor==="todos"||ponto.materiais.includes(valor);
+    if(deveMostrar&&!mapa.hasLayer(marcador))marcador.addTo(mapa);
+    if(!deveMostrar&&mapa.hasLayer(marcador))mapa.removeLayer(marcador);
   });
-}
+});
+document.getElementById("grajauButton").addEventListener("click",()=>mapa&&mapa.setView(centroGrajau,13));
+document.getElementById("gpsButton").addEventListener("click",()=>{
+  if(!navigator.geolocation){alert("Este navegador não oferece GPS.");return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const coords=[pos.coords.latitude,pos.coords.longitude];mapa.setView(coords,15);
+    L.circleMarker(coords,{radius:9,color:"#116b45",fillColor:"#d7f27c",fillOpacity:1}).addTo(mapa).bindPopup("Localização deste dispositivo").openPopup();
+  },()=>alert("Permita o acesso à localização no navegador. O mapa continua centrado em Grajaú."),{enableHighAccuracy:true,timeout:10000});
+});
 
-function usarLocalizacao(){
-  if (!navigator.geolocation) {
-    alert("Este navegador não oferece geolocalização.");
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(pos => {
-    const local = [pos.coords.latitude,pos.coords.longitude];
-    mapa.setView(local,15);
-    L.circleMarker(local,{radius:9,color:"#087b43",fillColor:"#c7f36b",fillOpacity:1})
-      .addTo(mapa).bindPopup("Localização deste dispositivo").openPopup();
-  }, () => alert("Não foi possível acessar o GPS. Permita a localização no navegador. O mapa continua centrado em Grajaú."),
-  {enableHighAccuracy:true,timeout:10000});
-}
-
-function irParaGrajau(){ if (mapa) mapa.setView(grajau,13); }
-
-function mostrarSlide(indice){
-  const slides = document.getElementById("slides");
-  const bolinhas = [...document.querySelectorAll(".dot")];
-  slideAtual = (indice + 3) % 3;
-  slides.style.transform = `translateX(-${slideAtual * 100}%)`;
-  bolinhas.forEach((b,i) => b.classList.toggle("active", i === slideAtual));
-}
-function moverSlide(direcao){ mostrarSlide(slideAtual + direcao); reiniciarCarrossel(); }
-function reiniciarCarrossel(){
-  clearInterval(timerCarrossel);
-  timerCarrossel = setInterval(() => mostrarSlide(slideAtual + 1), 6500);
-}
-
-document.getElementById("materialFilter").addEventListener("change", filtrarPontos);
-document.getElementById("locateBtn").addEventListener("click", usarLocalizacao);
-document.getElementById("resetMap").addEventListener("click", irParaGrajau);
-document.getElementById("prev").addEventListener("click", () => moverSlide(-1));
-document.getElementById("next").addEventListener("click", () => moverSlide(1));
-document.querySelectorAll(".dot").forEach((b,i) => b.addEventListener("click", () => { mostrarSlide(i); reiniciarCarrossel(); }));
-
-document.getElementById("registerForm").addEventListener("submit", evento => {
-  evento.preventDefault();
-  const nome = document.getElementById("name").value.trim();
-  const status = document.getElementById("registerStatus");
-  status.textContent = `Simulação de cadastro concluída para ${nome}. Nenhum dado foi enviado ou salvo em servidor.`;
+document.getElementById("registerForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  const nome=document.getElementById("fullName").value.trim();
+  const perfil=document.getElementById("profile").value;
+  const status=document.getElementById("registerStatus");
+  status.textContent=`Cadastro de teste concluído para ${nome} (${perfil}). Os dados não foram enviados nem guardados.`;
   status.classList.add("show");
 });
-document.getElementById("pickupForm").addEventListener("submit", evento => {
-  evento.preventDefault();
-  const nome = document.getElementById("pickupName").value.trim();
-  const material = document.getElementById("pickupMaterial").value;
-  const data = document.getElementById("pickupDate").value;
-  const status = document.getElementById("pickupStatus");
-  status.textContent = `Simulação registrada para ${nome}: ${material}, data desejada ${data}. A coleta não foi enviada nem confirmada.`;
+document.getElementById("pickupForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  const nome=document.getElementById("pickupName").value.trim();
+  const material=document.getElementById("pickupMaterial").value;
+  const data=document.getElementById("pickupDate").value;
+  const status=document.getElementById("pickupStatus");
+  status.textContent=`Simulação preenchida para ${nome}: ${material}, data desejada ${data}. Não existe coleta confirmada.`;
   status.classList.add("show");
 });
+
+document.getElementById("menuButton").addEventListener("click",()=>{
+  const nav=document.getElementById("nav");
+  const aberto=nav.classList.toggle("open");
+  document.getElementById("menuButton").setAttribute("aria-expanded",String(aberto));
+});
+document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>document.getElementById("nav").classList.remove("open")));
 
 iniciarMapa();
-reiniciarCarrossel();
+reiniciarTimer();
 '''
 
-(base / "index.html").write_text(html, encoding="utf-8")
-(base / "style.css").write_text(css, encoding="utf-8")
-(base / "script.js").write_text(js, encoding="utf-8")
-
-readme = """GRAJAÚ CIRCULAR — PROTÓTIPO WEB
+(base/"index.html").write_text(html,encoding="utf-8")
+(base/"style.css").write_text(css,encoding="utf-8")
+(base/"script.js").write_text(js,encoding="utf-8")
+(base/"LEIA-ME.txt").write_text("""GRAJAÚ CIRCULAR — PROTÓTIPO PARA GITHUB PAGES
 
 ARQUIVOS
-- index.html: estrutura do site
-- style.css: aparência e layout
-- script.js: carrossel, mapa, GPS, filtros e formulários simulados
+- index.html: estrutura das páginas e formulários.
+- style.css: cores, animações, layout responsivo.
+- script.js: carrossel, mapa, GPS, filtros e simulações.
+
+FOTOS REAIS DE GRAJAÚ
+Para evitar mostrar imagens de outras cidades como se fossem Grajaú, o carrossel usa quatro espaços reservados para fotografias locais. Coloque fotos que você tenha tirado ou tenha autorização para usar dentro da pasta fotos-grajau, com estes nomes exatos:
+- ponte-grajau.jpg
+- olho-dagua.jpg
+- igreja-grajau.jpg
+- paisagem-grajau.jpg
+Crie a pasta fotos-grajau ao lado do index.html. Se as fotos não forem colocadas, o site mostra instruções no próprio carrossel.
 
 COMO TESTAR
-1. Extraia o ZIP para uma pasta.
+1. Extraia o ZIP.
 2. Abra a pasta no VS Code.
-3. Abra index.html no navegador ou use a extensão Live Server.
-4. É necessário ter internet para carregar o mapa e as fotos externas.
+3. Abra index.html no navegador ou use Live Server.
+4. A conexão com a internet é necessária para carregar o mapa.
 
 PUBLICAR NO GITHUB PAGES
-1. Entre no GitHub e crie um repositório público chamado grajau-circular.
-2. Envie index.html, style.css e script.js para a raiz do repositório.
-3. Abra Settings > Pages.
-4. Em Build and deployment, selecione Deploy from a branch.
-5. Escolha a branch main e a pasta /(root); clique em Save.
-6. Aguarde a publicação e abra o endereço mostrado pelo GitHub Pages.
+1. Crie um repositório público no GitHub.
+2. Envie index.html, style.css, script.js e a pasta fotos-grajau com suas fotos locais.
+3. No repositório, abra Settings > Pages.
+4. Em Build and deployment, escolha Deploy from a branch.
+5. Selecione branch main e pasta /(root), depois Save.
+6. Aguarde o link publicado.
 
 IMPORTANTE
-- Os marcadores do mapa são exemplos ilustrativos, não locais reais verificados.
-- O mapa fica centrado aproximadamente em Grajaú–MA. O botão GPS usa a localização do dispositivo apenas após autorização do navegador.
-- Cadastro e agendamento são simulações; não existe banco de dados, login real ou envio de pedidos.
-- Não use dados pessoais reais neste protótipo.
-- As fotos são imagens ilustrativas externas, não fotos confirmadas de pontos turísticos de Grajaú.
-- Lâmpadas só devem aparecer em locais que confirmem aceitar esse tipo de resíduo.
-"""
-(base / "LEIA-ME.txt").write_text(readme, encoding="utf-8")
+- Os pontos de coleta são fictícios e devem ser confirmados em pesquisa de campo.
+- O mapa é centrado aproximadamente em Grajaú–MA.
+- O GPS só funciona após permissão e geralmente em HTTPS/localhost.
+- Cadastro e agendamento são simulações; não há banco de dados nem coleta real.
+- Lâmpadas devem ser entregues apenas em pontos que confirmem receber esse tipo de resíduo.
+""",encoding="utf-8")
 
-zip_path = Path("/mnt/data/Grajau_Circular_HTML_CSS_JS_GitHub.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    for name in ["index.html", "style.css", "script.js", "LEIA-ME.txt"]:
-        z.write(base / name, name)
-
-print("Arquivos criados com sucesso:")
-print("/mnt/data/Grajau_Circular/index.html")
-print("/mnt/data/Grajau_Circular/style.css")
-print("/mnt/data/Grajau_Circular/script.js")
-print("/mnt/data/Grajau_Circular_HTML_CSS_JS_GitHub.zip")
+zip_path=Path("/mnt/data/Grajau_Circular_GitHub_Pages.zip")
+with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
+    for name in ["index.html","style.css","script.js","LEIA-ME.txt"]:
+        z.write(base/name,name)
+print("Pacote pronto:",zip_path)
